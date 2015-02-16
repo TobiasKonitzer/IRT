@@ -25,7 +25,7 @@ irtpcp<-function(model, data)
    for (i in 1:ncol(data)){
      holder[,i]<-plogis(-mean(as.data.frame(model)[,nrow(data)-1+(i*2)])+mean(as.data.frame(model)[,nrow(data)+(i*2)])*colMeans(as.data.frame(model)[,1:nrow(data)]))  
    }
-   return(mean(round(as.vector(holder))==as.vector(data),na.rm=T))}    
+   return(mean(round(as.vector(holder))==as.vector(data),na.rm=T))*100}    
  else {
    cat("Error: Non-recognizable model")
    stop("Please respecify and call irtpcp() again.\n", 
