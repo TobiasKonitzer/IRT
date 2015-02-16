@@ -9,8 +9,9 @@ irtfit<-function(model, data)
  if(class(model)=="SingleGroupClass"){
    holder<-matrix(NA, nrow=nrow(data),ncol=ncol(data))
    colnames(holder)<-colnames(data)
+   fscores_holder<-fscores(model,full.scores=T, scores.only=T)
    for (i in 1:ncol(data)){
-     holder[,i]<-plogis(coef(model)[[i]][2]+coef(model)[[i]][1]*fscores(model,full.scores=T, scores.only=T))
+     holder[,i]<-plogis(coef(model)[[i]][2]+coef(model)[[i]][1]*fscores_holder)
    }
    return(separationplot(as.vector(holder)[which(!is.na(as.vector(data)))],as.vector(data)[which(!is.na(as.vector(data)))],type='rect'))
  }
