@@ -12,7 +12,7 @@ irtpcp<-function(model, data)
    for (i in 1:ncol(data)){
      holder[,i]<-plogis(coef(model)[[i]][2]+coef(model)[[i]][1]*fscores(model,full.scores=T, scores.only=T))
    }
-   return(mean(round(as.vector(holder))==as.vector(data),na.rm=T))}
+   return(mean(round(as.vector(holder))==as.vector(data),na.rm=T))*100}
  else if(class(model)=="mcmc"){
    if(ncol(as.data.frame(model))==nrow(data))
    {
