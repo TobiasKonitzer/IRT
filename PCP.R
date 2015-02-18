@@ -8,9 +8,8 @@ irtpcp<-function(model, data)
  
  if(class(model)=="SingleGroupClass"){
    holder<-matrix(NA, nrow=nrow(data),ncol=ncol(data))
-   colnames(holder)<-colnames(data)
+   colnames(holder)<-colnames(data);fscores_holder<-fscores(model,full.scores=T, scores.only=T)
    for (i in 1:ncol(data)){
-     fscores_holder<-fscores(model,full.scores=T, scores.only=T)
      holder[,i]<-plogis(coef(model)[[i]][2]+coef(model)[[i]][1]*fscores_holder)
    }
    return(mean(round(as.vector(holder))==as.vector(data),na.rm=T))*100}
